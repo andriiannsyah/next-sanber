@@ -1,6 +1,6 @@
 export default function Menu() {
   return (
-    <div>
+    <div className="bg-salmon">
       <li>
         <a href="/">Menu Home</a>
       </li>
