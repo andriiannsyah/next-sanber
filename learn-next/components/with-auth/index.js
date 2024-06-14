@@ -1,8 +1,8 @@
-export function withAuth(Component) {
-  return function withAuth(props) {
-    const isLogin = true;
+// export function withAuth(Component) {
+//   return function withAuth(props) {
+//     const isLogin = true;
 
-    if (!isLogin) return <div>Anda Harus Login</div>;
-    return <Component {...props} />;
-  };
-}
+//     if (!isLogin) return <div>Anda Harus Login</div>;
+//     return <Component {...props} />;
+//   };
+// }

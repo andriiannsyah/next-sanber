@@ -1,12 +1,4 @@
-import Menu from "@/components/Menu";
-import { withAuth } from "../with-auth";
-
-export function Header() {
-  return (
-    <div>
-      <Menu />
-    </div>
-  );
+import styles from "./styles.module.css";
+export default function Header() {
+  return <div className={styles.bg}>Ini Header</div>;
 }
-
-export default withAuth(Header);
