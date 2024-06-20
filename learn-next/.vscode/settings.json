@@ -4,5 +4,8 @@
   },
   "eslint.validate": ["javascript"],
   "editor.tabSize": 2,
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "eslint.options": { "setting": true }
 }
+
+// https://www.youtube.com/watch?v=I8D0BObBXyg (eslint.options) solved
