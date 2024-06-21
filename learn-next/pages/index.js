@@ -1,5 +1,6 @@
-import Layout from "@/Layouts";
+import dynamic from "next/dynamic";
 import { useEffect } from "react";
+import Image from "next/image";
 
 export default function Main() {
   useEffect(() => {
@@ -8,11 +9,15 @@ export default function Main() {
       .then((res) => console.log("response =>", res))
       .catch((err) => console.log("Error => ", err));
   }, []);
+
+  const LayoutComponent = dynamic(() => import("@/Layouts"));
   return (
     <>
-      <Layout metaTitle="Home" metasDescription="Ini meta deskripsi dari menu Home">
+      <LayoutComponent metaTitle="Home" metasDescription="Ini meta deskripsi dari menu Home">
         <p>Home</p>
-      </Layout>
+        <Image priority={true} src="/logo-next.png" width={200} height={200} alt="next-image" />
+        <img src="/logo-next.png" style={{ width: 200, height: 200 }} alt="next-image" />
+      </LayoutComponent>
     </>
   );
 }
