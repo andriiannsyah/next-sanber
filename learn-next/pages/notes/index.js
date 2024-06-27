@@ -1,12 +1,14 @@
 import dynamic from "next/dynamic";
 const LayoutComponent = dynamic(() => import("@/Layouts"));
-import { Box, Flex, Grid, GridItem, Card, CardBody, CardHeader, CardFooter, Heading, Text, Button } from "@chakra-ui/react";
+import { Box, Flex, Grid, GridItem, Card, CardBody, CardHeader, CardFooter, Heading, Text, Button, Spinner } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { useQueries } from "@/hooks/useQueries";
 
 export default function Notes() {
   const [notes, setNotes] = useState();
   const router = useRouter();
+  const { data } = useQueries({ prefixUrl: "https://service.pace-unv.cloud/api/notes" });
 
   const HandleDelete = async (id) => {
     try {
@@ -33,6 +35,7 @@ export default function Notes() {
     fetchingData();
   }, []);
   console.log(notes);
+
   return (
     <>
       <LayoutComponent metaTitle="Notes" metasDescription="Ini meta deskripsi dari Notes">

@@ -3,6 +3,7 @@ const LayoutComponent = dynamic(() => import("@/Layouts"));
 import { Box, Flex, Grid, GridItem, Card, CardBody, CardHeader, CardFooter, Heading, Text, Button, Input, Textarea } from "@chakra-ui/react";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { useMutation } from "@/hooks/useMutation";
 
 export default function Notes() {
   const [notes, setNotes] = useState({
@@ -10,24 +11,17 @@ export default function Notes() {
     description: "",
   });
   const router = useRouter();
+  const { mutate } = useMutation();
 
   const HandleSubmit = async () => {
-    try {
-      const res = await fetch("https://service.pace-unv.cloud/api/notes", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(notes),
-      });
-      const result = await res.json();
-      if (result?.success) {
-        router.push("/notes");
-      }
-      console.log("Hasil =>", result);
-    } catch (error) {}
+    const response = await mutate({
+      url: "https://service.pace-unv.cloud/api/notes",
+      payload: notes,
+    });
+    if (response?.success) {
+      router.push("/notes");
+    }
   };
-
   return (
     <>
       <LayoutComponent metaTitle="Add Notes" metasDescription="Ini meta deskripsi dari Add Notes">
