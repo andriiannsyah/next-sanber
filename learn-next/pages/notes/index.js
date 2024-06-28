@@ -4,11 +4,15 @@ import { Box, Flex, Grid, GridItem, Card, CardBody, CardHeader, CardFooter, Head
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useQueries } from "@/hooks/useQueries";
+import fetcher from "@/utils/fetcher";
+import useSWR from "swr";
 
 export default function Notes() {
   const [notes, setNotes] = useState();
   const router = useRouter();
-  const { data } = useQueries({ prefixUrl: "https://service.pace-unv.cloud/api/notes" });
+  // const { data } = useQueries({ prefixUrl: "https://service.pace-unv.cloud/api/notes" });
+
+  const { data, isLoading } = useSWR("https://service.pace-unv.cloud/api/notes", fetcher, { revalidateOnFocus: true });
 
   const HandleDelete = async (id) => {
     try {
